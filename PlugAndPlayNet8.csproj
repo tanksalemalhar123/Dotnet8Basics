@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Disable SDK auto-generation of assembly attributes to avoid duplicate attribute errors
+         (these attributes are sometimes generated twice into obj/ when project or SDK tooling
+         also emits them). If you need assembly metadata, add a single AssemblyInfo.cs file
+         under Properties/ or set the attributes via MSBuild properties intentionally. -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+  </ItemGroup>
+
+</Project>

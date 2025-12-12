@@ -1,0 +1,6 @@
+@PlugAndPlayNet8_HostAddress = http://localhost:5034
+
+GET {{PlugAndPlayNet8_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
