@@ -1,6 +1,8 @@
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 using PlugAndPlay.Api.Managers;
 using PlugAndPlay.Api.Providers;
+using PlugAndPlay.Api.Data;
 
 namespace PlugAndPlay.Api
 {
@@ -10,11 +12,22 @@ namespace PlugAndPlay.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Also try to load a solution-level appsettings.json (one directory up) so
+            // the DefaultConnection from the repository root is available when running
+            // from the src/PlugAndPlay.Api folder during development.
+            builder.Configuration.AddJsonFile("../appsettings.json", optional: true, reloadOnChange: true);
+
             // Register services
             builder.Services.AddSingleton<IAgendaProvider, InMemoryAgendaProvider>();
-            // Use HelloProvider as the implementation for IHelloProvider
-            builder.Services.AddSingleton<IHelloProvider, HelloProvider>();
-            // Register managers
+
+            // Configure EF Core DbContext (scoped) using Postgres connection string
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+
+            // Use HelloProvider as the implementation for IHelloProvider (scoped because it depends on DbContext)
+            builder.Services.AddScoped<IHelloProvider, HelloProvider>();
+
+            // Register managers (scoped)
             builder.Services.AddScoped<AgendaManager>();
             builder.Services.AddScoped<HelloManager>();
 

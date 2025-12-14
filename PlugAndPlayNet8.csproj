@@ -15,4 +15,20 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
   </ItemGroup>
 
+  <!-- Reference the API project so the root app can use its DbContext and providers -->
+  <ItemGroup>
+    <ProjectReference Include="src/PlugAndPlay.Api/PlugAndPlay.Api.csproj" />
+  </ItemGroup>
+
+  <!-- Prevent the root project from implicitly compiling the API project's source files
+       (they live under the repo root in src/PlugAndPlay.Api). The API project is referenced
+       via ProjectReference above and will be built separately; including the same .cs files
+       in the root project causes duplicate type definitions and conflicting assembly issues.
+  -->
+  <ItemGroup>
+    <Compile Remove="src/PlugAndPlay.Api\**\*.cs" />
+    <None Remove="src/PlugAndPlay.Api\**\*.*" />
+    <Content Remove="src/PlugAndPlay.Api\**\*.*" />
+  </ItemGroup>
+
 </Project>

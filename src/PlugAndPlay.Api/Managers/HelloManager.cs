@@ -37,4 +37,58 @@ public class HelloManager
         var result = new ManagerResult<List<object[]>>(items, true, "OK", ResponseCode.SUCCESS);
         return Task.FromResult(result);
     }
+
+    public async Task<ManagerResult<bool>> TestDb()
+    {
+        var success = await _provider.TestConnectionAsync();
+
+        return new ManagerResult<bool>
+        {
+            IsSuccess = success,
+            Data = success,
+            ErrorMessage = success ? "Connected to PostgreSQL" : "Connection Failed",
+            Code = success ? ResponseCode.SUCCESS : ResponseCode.INTERNAL_ERROR
+        };
+    }
+
+
+    public async Task<ManagerResult<List<Employee>>> GetEmployees()
+    {
+        var employees = await _provider.GetEmployeesAsync();
+
+        return new ManagerResult<List<Employee>>
+        {
+            IsSuccess = true,
+            Data = employees,
+            ErrorMessage = "Fetched employees successfully",
+            Code = ResponseCode.SUCCESS
+        };
+    }
+
+    public async Task<ManagerResult<List<Order>>> GetOrders()
+    {
+        var orders = await _provider.GetOrders();
+
+        return new ManagerResult<List<Order>>
+        {
+            IsSuccess = true,
+            Data = orders,
+            ErrorMessage = "Fetched employees successfully",
+            Code = ResponseCode.SUCCESS
+        };
+    }
+
+    public async Task<ManagerResult<List<object>>> GetOrdersWithUsers()
+    {
+        var ordersWithUsers = await _provider.GetOrdersWithUsers();
+
+        return new ManagerResult<List<object>>
+        {
+            IsSuccess = true,
+            Data = ordersWithUsers,
+            ErrorMessage = "Fetched employees successfully",
+            Code = ResponseCode.SUCCESS
+        };
+    }
+
 }

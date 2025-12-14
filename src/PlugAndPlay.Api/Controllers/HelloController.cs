@@ -41,4 +41,33 @@ public class HelloController : BaseController
         return ConvertManagerResultToBuildResponse(result);
     }
 
+    [HttpGet("db-test")]
+    public async Task<IActionResult> TestDb()
+    {
+        var result = await _helloManager.TestDb();
+        return ConvertManagerResultToBuildResponse(result);
+    }
+
+    [HttpGet("employees")]
+    public async Task<IActionResult> GetEmployees()
+    {
+        var result = await _helloManager.GetEmployees();
+        return ConvertManagerResultToBuildResponse(result);
+    }
+
+    [HttpGet("orders")]
+    public async Task<IActionResult> GetOrders()
+    {
+        var result = await _helloManager.GetOrders();
+        return ConvertManagerResultToBuildResponse(result);
+    }
+
+
+    [HttpGet("orderswithusers")]
+    public async Task<IActionResult> GetOrdersWithUsers()
+    {
+        var result = await _helloManager.GetOrdersWithUsers();
+        return ConvertManagerResultToBuildResponse(result);
+    }
+
 }
