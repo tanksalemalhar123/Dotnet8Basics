@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using PlugAndPlay.Api.Managers;
 using PlugAndPlay.Api.Providers;
 using PlugAndPlay.Api.Data;
+using PlugAndPlay.Api.Middleware;
+
 
 namespace PlugAndPlay.Api
 {
@@ -46,6 +48,7 @@ namespace PlugAndPlay.Api
             app.UseSwagger();
             app.UseSwaggerUI();
 
+            app.UseMiddleware<LoggerMiddleware>();
 
             app.UseHttpsRedirection();
 
