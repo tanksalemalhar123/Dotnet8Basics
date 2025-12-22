@@ -33,6 +33,10 @@ namespace PlugAndPlay.Api
             builder.Services.AddScoped<AgendaManager>();
             builder.Services.AddScoped<HelloManager>();
 
+            builder.Services.AddScoped<IEmployeeProvider, EmployeeProvider>();
+            builder.Services.AddScoped<IEmployeeManager, EmployeeManager>();
+
+
             builder.Services.AddControllers();
 
             // Swagger
