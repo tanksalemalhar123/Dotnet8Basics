@@ -4,6 +4,8 @@ using PlugAndPlay.Api.Managers;
 using PlugAndPlay.Api.Providers;
 using PlugAndPlay.Api.Data;
 using PlugAndPlay.Api.Middleware;
+using PlugAndPlay.Api.Common.Discounts;
+
 
 
 namespace PlugAndPlay.Api
@@ -35,6 +37,11 @@ namespace PlugAndPlay.Api
 
             builder.Services.AddScoped<IEmployeeProvider, EmployeeProvider>();
             builder.Services.AddScoped<IEmployeeManager, EmployeeManager>();
+
+            builder.Services.AddScoped<IDiscountStrategy, FestivalDiscountStrategy>();
+            builder.Services.AddScoped<IDiscountStrategy, EmployeeDiscountStrategy>();
+            builder.Services.AddScoped<OrderManager>();
+
 
 
             builder.Services.AddControllers();
