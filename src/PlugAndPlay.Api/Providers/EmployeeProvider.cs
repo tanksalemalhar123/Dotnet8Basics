@@ -18,4 +18,5 @@ public class EmployeeProvider : IEmployeeProvider
     {
         return await _context.Employees.ToListAsync();
     }
+    //This is ISP Principle
 }

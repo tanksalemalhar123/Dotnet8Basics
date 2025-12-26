@@ -6,3 +6,4 @@ public interface IEmployeeProvider
 {
     Task<List<Employee>> GetEmployeesAsync();
 }
+//ISP Principle
