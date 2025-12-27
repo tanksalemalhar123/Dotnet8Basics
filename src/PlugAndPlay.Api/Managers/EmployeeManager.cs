@@ -3,7 +3,7 @@ namespace PlugAndPlay.Api.Managers;
 using PlugAndPlay.Api.Models;
 using PlugAndPlay.Api.Providers;
 
-public class EmployeeManager : IEmployeeManager
+public class EmployeeManager : IEmployeeManager //This is D — Dependency Inversion Principle (DIP)
 {
     private readonly IEmployeeProvider _employeeProvider;
     public EmployeeManager(IEmployeeProvider employeeProvider)
